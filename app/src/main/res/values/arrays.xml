@@ -16,8 +16,7 @@
         <item>Pera unidad</item>
     </string-array>
     <string-array name="clientes_array">
-        <item>Seleccione un cliente...</item>
-        <item>Sergio Mondez</item>
+        <item>Sergio Mendez</item>
         <item>Fernando Barrios</item>
         <item>Mathias de Mestral</item>
     </string-array>
