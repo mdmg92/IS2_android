@@ -45,7 +45,7 @@ public class ClientesActivity extends AppCompatActivity {
                 // Inserción Clientes
                 String cliente1 = datos.insertarCliente(new Cliente(null, "Mathias", "de Mestral", "4552000", "Asuncion"));
                 String cliente2 = datos.insertarCliente(new Cliente(null, "Fernando", "Barrios", "4440000", "Nemby"));
-                String cliente3 = datos.insertarCliente(new Cliente(null, "Sergio", "Mondez", "4440000", "Luque"));
+                String cliente3 = datos.insertarCliente(new Cliente(null, "Sergio", "Mendez", "4440000", "Luque"));
 
                 // Inserción Productos
                 String producto1 = datos.insertarProducto(new Producto(null, "Manzana unidad", 2, 100));
@@ -150,10 +150,9 @@ public class ClientesActivity extends AppCompatActivity {
 
     public void agregarCliente(View view) {
         if (cab.equals(null)) {
-
+            //
         } else {
             Intent intent = new Intent(this, ProductosActivity.class);
-            String message = "Hello world";
             intent.putExtra("CabeceraPedido", cab);
             startActivity(intent);
         }
