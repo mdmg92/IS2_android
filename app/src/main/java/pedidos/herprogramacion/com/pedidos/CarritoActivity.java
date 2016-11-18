@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -132,7 +133,12 @@ public class CarritoActivity extends AppCompatActivity {
                     Cursor cabecera = datos.obtenerCabeceraPorId(id_cabecera);
                     String fecha = "", nombre = "", apellido = "";
                     if (cabecera != null && cabecera.moveToFirst()) {
-                        Log.d(cabecera.getString(cabecera.getColumnIndex(ContratoPedidos.Clientes.APELLIDOS)),"Clientes");
+                        Context context = getApplicationContext();
+                        CharSequence text = "Gracias por su compra!";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
                     }
 
                     for (int i = 0; i < carrito.size(); i++) {
@@ -140,6 +146,10 @@ public class CarritoActivity extends AppCompatActivity {
                         det.setIdCabeceraPedido(id_cabecera);
                         datos.insertarDetallePedido(det);
                     }
+
+                    Intent firstActivity = new Intent(getApplicationContext(), ClientesActivity.class);
+                    datos.getDb().close();
+                    startActivity(firstActivity);
                 }
             }
         });
@@ -150,12 +160,16 @@ public class CarritoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (cancelar.getId() == ((Button) v).getId()) {
-                    Intent mStartActivity = new Intent(getApplicationContext(), ClientesActivity.class);
-                    int mPendingIntentId = 123456;
-                    PendingIntent mPendingIntent = PendingIntent.getActivity(getApplicationContext(), mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-                    AlarmManager mgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-                    mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
-                    System.exit(0);
+                    Context context = getApplicationContext();
+                    CharSequence text = "Compra cancelada!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                    Intent firstActivity = new Intent(getApplicationContext(), ClientesActivity.class);
+                    datos.getDb().close();
+                    startActivity(firstActivity);
                 }
             }
         });
