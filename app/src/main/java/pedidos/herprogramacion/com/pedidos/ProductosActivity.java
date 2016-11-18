@@ -1,5 +1,6 @@
 package pedidos.herprogramacion.com.pedidos;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
@@ -118,6 +120,16 @@ public class ProductosActivity extends AppCompatActivity {
         this.price = det.precio;
         display(this.quantity);
         displayTotal(this.quantity * this.price);
+
+        Context context = getApplicationContext();
+        CharSequence text = "Producto agregado!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        Spinner spinner = (Spinner) findViewById(R.id.planets_spinner);
+        spinner.setSelection(0);
     }
 
     /**
