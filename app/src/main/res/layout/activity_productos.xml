@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="pedidos.herprogramacion.com.pedidos.ProductosActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="16dp"
     android:orientation="vertical"
-    tools:context="pedidos.herprogramacion.com.pedidos.ProductosActivity">
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true">
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,7 +52,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:text="1"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorAccent"
             android:textSize="16sp" />
 
         <Button
@@ -78,7 +84,7 @@
             android:text="$0"
             android:textAllCaps="true"
             android:textSize="16sp"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorAccent"
             android:layout_alignBaseline="@+id/price_text"
             android:layout_alignBottom="@+id/price_text"
             android:layout_toRightOf="@+id/price_text"
@@ -105,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="$0"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorAccent"
             android:textSize="16sp"
             android:layout_alignBaseline="@+id/total_text"
             android:layout_alignBottom="@+id/total_text"
@@ -141,3 +147,4 @@
         android:textColor="@color/colorAccent"
         android:text=""/>
 </LinearLayout>
+</RelativeLayout>
