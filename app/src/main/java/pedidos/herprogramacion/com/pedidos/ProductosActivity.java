@@ -68,8 +68,8 @@ public class ProductosActivity extends AppCompatActivity {
                     producto.close();
                 }
 
-                displayPrice(precio);
-                displayTotal(precio);
+                displayPrice((int)precio);
+                displayTotal((int)precio);
                 det = new DetallePedido(cab.idCabeceraPedido, (int)(Math.random() + 1), id_producto, 0, precio);
             }
 
@@ -92,30 +92,18 @@ public class ProductosActivity extends AppCompatActivity {
         mensaje.setText("");
 
         if (carrito.size() == 0 ) {
-            Context context = getApplicationContext();
-            CharSequence text = "Carrito vacio!";
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            mensaje.setText("Carrito de Compras vacio");
         }
         else {
+            String priceMessage = "Total: $" + quantity * det.precio + "\nGracias por su compra!";
             TextView quantityTextView = (TextView) findViewById(
                     R.id.quantity_text_view);
             display(this.quantity);
-
-            Context context = getApplicationContext();
-            CharSequence text = "Redireccionando al carrito...";
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-
+            displayMessage(priceMessage);
             Intent intent = new Intent(this, CarritoActivity.class);
             intent.putExtra("DetallePedido", (Serializable) carrito);
             intent.putExtra("CabeceraPedido", cab);
             startActivity(intent);
-
         }
     }
 
@@ -151,25 +139,9 @@ public class ProductosActivity extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.planets_spinner);
         String producto = spinner.getSelectedItem().toString();
 
-        Cursor aux_producto = datos.getProducto(producto);
-        if (aux_producto != null && aux_producto.moveToFirst()) {
-            int stock = aux_producto.getInt(aux_producto.getColumnIndex(ContratoPedidos.Productos.EXISTENCIAS));
-            if (stock <= this.quantity) {
-                display(this.quantity);
-                displayTotal(this.quantity * det.precio);
-
-                Context context = getApplicationContext();
-                CharSequence text = "No hay suficiente stock del producto!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            } else {
-                this.quantity = this.quantity + 1;
-                display(this.quantity);
-                displayTotal(this.quantity * det.precio);
-            }
-        }
+        this.quantity = this.quantity + 1;
+        display(this.quantity);
+        displayTotal(this.quantity * det.precio);
     }
 
     /**
@@ -179,12 +151,6 @@ public class ProductosActivity extends AppCompatActivity {
         this.quantity = quantity - 1;
         if (this.quantity == 0) {
             this.quantity = 1;
-            Context context = getApplicationContext();
-            CharSequence text = "Cantidad minima: 1!";
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
         }
         display(quantity);
         displayTotal(quantity * det.precio);
@@ -193,7 +159,7 @@ public class ProductosActivity extends AppCompatActivity {
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(float number) {
+    private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(
                 R.id.quantity_text_view);
         quantityTextView.setText("" + number);
@@ -202,7 +168,7 @@ public class ProductosActivity extends AppCompatActivity {
     /**
      * This method displays the given price on the screen.
      */
-    private void displayPrice(float number) {
+    private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }

@@ -78,7 +78,7 @@ public class CarritoActivity extends AppCompatActivity {
 
         row_producto.setText("Producto");
         row_total.setText("Total");
-        row_cantidad.setText("Cant");
+        row_cantidad.setText("Cantidad");
         row_precio.setText("Precio");
 
         row.addView(row_producto);
@@ -101,11 +101,11 @@ public class CarritoActivity extends AppCompatActivity {
             Cursor detalle = datos.getProducto(det.idProducto);
             if (detalle != null && detalle.moveToFirst()) {
                 producto.setText(detalle.getString(detalle.getColumnIndex(ContratoPedidos.Productos.NOMBRE)));
-                float price = detalle.getFloat(detalle.getColumnIndex(ContratoPedidos.Productos.PRECIO));
-                precio.setText(String.format("%.2f", price));
+                precio.setText(detalle.getString(detalle.getColumnIndex(ContratoPedidos.Productos.PRECIO)));
                 cantidad.setText(String.valueOf(det.cantidad));
+                float price = detalle.getFloat(detalle.getColumnIndex(ContratoPedidos.Productos.PRECIO));
                 float total_aux = price * det.cantidad;
-                total.setText(String.format("%.2f", total_aux));
+                total.setText(String.valueOf(total_aux));
                 total_tabla += total_aux;
             }
             fila.addView(producto);
@@ -117,7 +117,7 @@ public class CarritoActivity extends AppCompatActivity {
 
         TableRow footer = new TableRow(this);
         TextView row_total_tabla = (TextView) getLayoutInflater().inflate(R.layout.fila_template, null);
-        row_total_tabla.setText(String.format("Total: $%.2f", total_tabla));
+        row_total_tabla.setText("Total: $" + String.valueOf(total_tabla));
         footer.addView(row_total_tabla);
         tabla.addView(footer);
 

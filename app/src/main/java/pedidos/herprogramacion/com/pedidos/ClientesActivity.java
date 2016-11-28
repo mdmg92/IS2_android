@@ -48,10 +48,10 @@ public class ClientesActivity extends AppCompatActivity {
                 String cliente3 = datos.insertarCliente(new Cliente(null, "Sergio", "Mendez", "4440000", "Luque"));
 
                 // Inserción Productos
-                String producto1 = datos.insertarProducto(new Producto(null, "Manzana unidad", 2, 20));
-                String producto2 = datos.insertarProducto(new Producto(null, "Pera unidad", 3, 10));
-                String producto3 = datos.insertarProducto(new Producto(null, "Guayaba unidad", 5, 5));
-                String producto4 = datos.insertarProducto(new Producto(null, "Maní unidad", 3.6f, 3));
+                String producto1 = datos.insertarProducto(new Producto(null, "Manzana unidad", 2, 100));
+                String producto2 = datos.insertarProducto(new Producto(null, "Pera unidad", 3, 230));
+                String producto3 = datos.insertarProducto(new Producto(null, "Guayaba unidad", 5, 55));
+                String producto4 = datos.insertarProducto(new Producto(null, "Maní unidad", 3.6f, 60));
 
                 // Inserción Pedidos
                 String pedido1 = datos.insertarCabeceraPedido(
